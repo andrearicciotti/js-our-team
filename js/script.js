@@ -53,22 +53,22 @@ const team = [
 // Stampo le informazioni su ogni singolo oggetto nel DOM sotto forma di stringa
 
 const rowElem = document.querySelector('.row');
-let string = "";
+// let string = "";
 
-for (let i = 0; i < team.length; i++) {
+// for (let i = 0; i < team.length; i++) {
 
-    const curObject = team[i];
+//     const curObject = team[i];
 
-    for (let key in curObject) {
-        console.log(key, "-", curObject[key]);
+//     for (let key in curObject) {
+//         console.log(key, "-", curObject[key]);
 
-        string += `${curObject[key]}`
-    }
-    console.log("----------");
-    // console.log(string);
-}
+//         string += `${curObject[key]}`
+//     }
+//     console.log("----------");
+//     // console.log(string);
+// }
 
-rowElem.innerHTML = string;
+// rowElem.innerHTML = string;
 // console.log(rowElem);
 
 
@@ -78,30 +78,85 @@ const teamPhotos = [];
 for (let i = 0; i < team.length; i++) {
 
     const curPhoto = team[i].photo;
-    console.log(curPhoto);
+    // console.log(curPhoto);
 
     let ImageElem = document.createElement('img');
+    ImageElem.classList.add('card-img-top');
     ImageElem.src = curPhoto;
 
-    console.log(ImageElem);
+    // console.log(ImageElem);
     teamPhotos.push(ImageElem);
 
 }
 
-console.log(teamPhotos);
+// console.log(teamPhotos);
 
 
 // Stampo elementi immagine
-for (let i = 0; i < teamPhotos.length; i++) {
+const cards = document.querySelector('.team-section');
+cards.classList.add('g-4');
 
-    const curImage = teamPhotos[i];
+// for (let i = 0; i < teamPhotos.length; i++) {
+
+//     const curImage = teamPhotos[i];
+
+//     const col = document.createElement('div');
+//     col.classList.add('col-4');
+
+//     const card = document.createElement('div');
+//     card.classList.add('card');
+
+//     const cardElems = document.createElement('ul');
+//     cardElems.classList.add('list-group');
+//     cardElems.classList.add('list-group-flush');
+//     cardElems.classList.add(`card-elem-${i}`);
+
+//     // console.log(curImage);
+//     console.log(cardElems);
+//     card.append(curImage);
+//     col.append(card);
+//     cards.append(col);
+// }
+
+
+// Organizzazione singoli membri in card individuali
+for (let i = 0; i < team.length; i++) {
+
+    const col = document.createElement('div');
+    col.classList.add('col-lg-4');
+    col.classList.add('col-md-6');
+    col.classList.add('col-sm-12');
 
     const card = document.createElement('div');
-    card.classList.add('col-4');
+    card.classList.add('card');
 
-    console.log(curImage);
-    card.append(curImage);
-    rowElem.append(card);
+    const curPhoto = team[i].photo;
+    const ImageElem = document.createElement('img');
+    ImageElem.classList.add('card-img-top');
+    ImageElem.src = curPhoto;
+
+    card.append(ImageElem);
+
+    const cardElems = document.createElement('ul');
+    cardElems.classList.add('list-group');
+    cardElems.classList.add('list-group-flush');
+    card.append(cardElems);
+
+    const curName = team[i].name;
+    console.log(curName);
+    const nameElem = document.createElement('li');
+    nameElem.classList.add('list-group-item');
+    nameElem.innerHTML = curName;
+    cardElems.append(nameElem);
+
+    const curRole = team[i].role;
+    console.log(curRole);
+    const roleElem = document.createElement('li');
+    roleElem.classList.add('list-group-item');
+    roleElem.innerHTML = curRole;
+    cardElems.append(roleElem);
+    // console.log(curPhoto);
+    col.append(card);
+    cards.append(col);
+
 }
-
-
